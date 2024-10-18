@@ -11,8 +11,8 @@ from lpips.trainer import *
 from lpips.lpips import *
 
 def normalize_tensor(in_feat,eps=1e-10):
-    norm_factor = torch.sqrt(torch.sum(in_feat**2,dim=1,keepdim=True))
-    return in_feat/(norm_factor+eps)
+    norm_factor = torch.sqrt(torch.sum(in_feat**2,dim=1,keepdim=True)+eps)
+    return in_feat/(norm_factor)
 
 def l2(p0, p1, range=255.):
     return .5*np.mean((p0 / range - p1 / range)**2)
